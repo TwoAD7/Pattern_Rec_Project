@@ -1,0 +1,12 @@
+holdrr = []
+
+fig = plt.figure(figsize=(10, 15)) 
+
+imgrr = Image.open("SAD.jpg").convert("L")       #convert to gray scale, using PIL library 
+imgrr = ImageOps.invert(imgrr)                   #to invert the image (black -> white, white-> black)
+imgrr = imgrr.resize((150,150),Image.ANTIALIAS)  #use antialiasing to "smooth" out the edges
+pix_valr = np.array(imgrr.getdata())             #extract the pixel values of our image after reshaping into a numpy array for ease of manipulation. Holds data for each pixel
+holdrr.append(pix_valr)
+temprr = np.array(holdrr)                        #To convert to a numpy array of numpy arrays containing our data
+plt.imshow(temprr.reshape(150,150),cmap=plt.cm.binary)
+plt.show()
