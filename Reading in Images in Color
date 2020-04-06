@@ -1,0 +1,7 @@
+
+fig = plt.figure(figsize=(10, 15)) 
+
+imgrr = Image.open("SAD.jpg")#.convert("L")       #convert to gray scale, using PIL library 
+imgrr = imgrr.resize((50,50),Image.ANTIALIAS)     #use antialiasing to "smooth" out the edges
+plt.imshow(imgrr)
+plt.show()
