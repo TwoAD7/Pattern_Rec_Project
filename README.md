@@ -15,8 +15,11 @@ The scope of this project is to correctly classify the images based on the follo
 
 Questions such as the following are some of the questions we are looking to be able to answer:
 > What color is this?
+
 > What shape is this?
+
 > Is this bright? 
+
 > What does this say?
 
 Of course, these are fundamental questions and we will expand accordingly and update the repository as we make progress.
