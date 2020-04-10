@@ -1,5 +1,5 @@
 # Pattern Rec. Project
-#### This is a repository for the pattern recognition class! This group contains the following group members
+#### This is a repository for the pattern recognition class! The name of this group is called Machines Can "C" and contains the following group members:
 - Keaton Brewster
 - Christine Case
 - Roy Salinas
@@ -24,3 +24,5 @@ Questions such as the following are some of the questions we are looking to be a
 
 Of course, these are fundamental questions and we will expand accordingly and update the repository as we make progress.
 
+#### Input and Output 
+The input and output of this program will consist of an individual uploading an image to a webserver, have the user ask a specific question about the picture, and have an answer prompted on the webserver.
