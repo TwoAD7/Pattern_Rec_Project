@@ -32,8 +32,11 @@ The goal of the MCC group is to have the user interface hosted on a webserver (o
 * Upload image 
 * Ask simple questions such as:
    > What is this?
+   
    > What color is this?
+   
    > What shape is this?
+   
 * Have answer returned on same server in a couple of seconds. 
 * Allow user to upload multiple images 
 
