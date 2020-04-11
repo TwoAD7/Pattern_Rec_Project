@@ -1,8 +1,19 @@
 
 fig = plt.figure(figsize=(10, 15)) 
 
+
+ax1 = fig.add_subplot(121)
 imgrr = Image.open("SAD.jpg")#.convert("L")       #convert to gray scale, using PIL library 
 imgrr = imgrr.resize((50,50),Image.ANTIALIAS)     #use antialiasing to "smooth" out the edges
-plt.imshow(imgrr)
+ax1.imshow(imgrr)
+
+ax2 = fig.add_subplot(121)
+im = Image.open("SAD.jpg") 
+pix = im.load()            #Load the images as an object
+print(im.size)             #Get the width and hight of the image for iterating over
+print(pix[10,10])          #Get the RGBA Value of the a pixel of an image
+#pix[x,y] = value  # Set the RGBA Value of the image (tuple)
+#im.save('TEST.png')  # Save the modified pixels as .png
+ax2.imshow(im)
+
 plt.show()
-#hey
