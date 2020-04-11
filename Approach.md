@@ -5,3 +5,6 @@ The over all goal of this is to be able to classfiy images based on the followin
 - Size 
 - Shape
 ---
+
+The approach entails 
+* sdf
