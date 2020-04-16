@@ -24,7 +24,7 @@
   - Need justification for method
 - Test each method and error analysis [keaton]
 - Take a look at over all status [keaton,roy,christine]
-
+---
 ### PHASE 5: Testing
 - The test.json file does not have answers for its pictures. We will have to use the validation images. 
 - Do similar pre-processing to get images that deal with color.
