@@ -9,8 +9,3 @@ script1=json_parser_module.py
 script2=json_parser_interface.py
 echo "You are running $script1 and $script2"
 python3 $script2 "$filedirectory" "$outfile"
-
-
-
-#python3 hello.py
-#print("hello world")
