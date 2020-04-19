@@ -1,8 +1,6 @@
 import json 
 import sys
 #Written by: Roy Salinas
-
-#with open("/mnt/c/Users/Owner/Desktop/Annotations/train.json","r") as f:
 #with open("test.json","r") as f:
 
 if __name__ == "__main__":
