@@ -1,8 +1,8 @@
 ### PHASE 1: Setting up the data  
-- Extract images to pi (currently on this) [keaton]
+- Extract images to pi  [keaton,roy]
 ---
 
-### PHASE 2: Preprocessing the files 
+### PHASE 2: Preprocessing the files <---- CURRENTLY ON
 - parse through the .json files [Roy]
   - look for questions that have the words "colors", "color" 
   - Separate those from our overall testing file. Call it "Color questions"
