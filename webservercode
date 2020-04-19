@@ -1,0 +1,32 @@
+<html>
+	<head>
+	<meta http-equiv="Content-Type" contect="text/html; charset=UTF-8" />
+	<title> MCC's WebServer </title>
+	<h1> This is the MCC's Webserver </h1>
+
+<!--	<form action="/action_page.php">
+		  <label for="fname">First name:</label>
+		    <input type="text" id="fname" name="fname"><br><br>
+		      <label for="lname">Last name:</label>
+		        <input type="text" id="lname" name="lname"><br><br>
+			  <input type="submit" value="Submit">
+	</form>
+-->
+
+	<script type="text/javascript">
+		function picture() {
+		var pic = "bubblechamber.jpg"
+		document.getElementById("demo").src = pic.replace('20x20', '225x225');
+		document.getElementById("demo").style.display='block';
+		}
+	</script>
+</head>
+<body>
+
+	<h1>A Web Page</h1>
+	<!--<p id="demo">Look, a button!</p> -->
+	<img id="demo" src="demo" style="display:none" />
+	<button onclick="picture()"> Click me!</button >
+
+</body>
+</html>
