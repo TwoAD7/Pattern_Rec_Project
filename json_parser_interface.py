@@ -1,11 +1,16 @@
 import json_parser_module as jp
 import sys 
 
+#Written by: Roy Salinas
+#Purpose: Serves as the interface to the json_parser module 
+#All arguments come from the shell script "parser.sh"
 
+#Colors are the colors we are looking for
 inputfile = sys.argv[1] #passed in by shell script
 outfile = sys.argv[2]	#^
-#For colors, insert the colors you are interested in finding in the .json file
-color_input = color_input.split() #returns array 
-colors = color_input
+colors  = sys.argv[3:] #grabbing all of the arguments in bash array in the third index of input
 
-jp.parser(inputfile,outfile,colors)
+#For colors, insert the colors you are interested in finding in the .json file
+color_input = colors#.split()
+
+jp.parser(inputfile,outfile,color_input)
