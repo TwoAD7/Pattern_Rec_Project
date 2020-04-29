@@ -16,65 +16,48 @@ Original file is located at
 
 # reading in packages______________________________________
 import cv2
-import argparse
-import imutils
-from google.colab.patches import cv2_imshow
 import numpy as np
 
 
 
 #importing image_____________________________________________
 
-# if it is in the filestream already
-img = cv2.imread('chicken.jpg')
+#image should contain file path
+def remove_background(image):
+  # if it is in the filestream already
+  img = cv2.imread(image)
 
-# this version can be used based on preference
-# from google.colab import files
-# from io import BytesIO
-# from PIL import Image
-
-# uploaded = files.upload()
-# im = Image.open(BytesIO(uploaded['bubblechamber.jpg']))
-
-
-
-# setting up contours____________________________________________
-gray_img = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-# gray_img = cv2.bitwise_not(gray_img) # flips which is foreground and background
-_, thresh = cv2.threshold(gray_img,155,255,cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
-img_contours = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)[-2]
-
-# cv2_imshow(gray_img)
-
-#sorting contours
-
-img_contours = sorted(img_contours, key=cv2.contourArea)
+  # setting up contours____________________________________________
+  gray_img = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+  # gray_img = cv2.bitwise_not(gray_img) # flips which is foreground and background
+  _, thresh = cv2.threshold(gray_img,155,255,cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
+  img_contours = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)[-2]
 
 
+  #sorting contours
+  img_contours = sorted(img_contours, key=cv2.contourArea)
 
-# runs through and keeps index of largest contour___________________
-Amax = 0
-m = 0
-for i in img_contours:
-  if cv2.contourArea(i) > Amax:
-    Amax =  cv2.contourArea(i)
-    m = i
+  # runs through and keeps index of largest contour___________________
+  Amax = 0
+  m = 0
+  for i in img_contours:
+    if cv2.contourArea(i) > Amax:
+      Amax =  cv2.contourArea(i)
+      m = i
 
+  # creates mask and new image_______________________________________
+  mask = np.zeros(img.shape[:2], np.uint8)
 
+  cv2.drawContours(mask, [m], -1,255,-1)
 
-# creates mask and new image_______________________________________
-mask = np.zeros(img.shape[:2], np.uint8)
+  # a few options here, but keep new_and; it works the best generally.
+  new_not = cv2.bitwise_not(img,img, mask = mask) #takes out subject
+  new_and = cv2.bitwise_and(img,img, mask = mask) # takes out background
+  new_or = cv2.bitwise_or(img,img, mask = mask) # also takes out background
+  new_xor = cv2.bitwise_xor(img,img, mask = mask) # takes out everything
 
-cv2.drawContours(mask, [m], -1,255,-1)
-
-
-# a few options here, but keep new_and; it works the best generally.
-new_not = cv2.bitwise_not(img,img, mask = mask) #takes out subject
-new_and = cv2.bitwise_and(img,img, mask = mask) # takes out background
-new_or = cv2.bitwise_or(img,img, mask = mask) # also takes out background
-new_xor = cv2.bitwise_xor(img,img, mask = mask) # takes out everything
-
-
+  # returns the image with a white background
+  return cv2.bitwise_not(new_and)
 
 
 # What needs to be updated: 
