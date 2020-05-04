@@ -33,7 +33,7 @@ def duplicate_check(_ourlist):
 
 def parser(inputfile,outfile,myList=[],*args):
     print(f"The input file is: {inputfile}")
-    print(f"Colors we are looking for are: {myList}")
+    #print(f"Colors we are looking for are: {myList}")
     with open(inputfile,"r") as f:
         data = json.load(f)
         f.close()
@@ -63,7 +63,7 @@ def parser(inputfile,outfile,myList=[],*args):
                                                 #image = "image"
                                                 #print(f"appended {_map[image]}")
                                                 counter =0
-                                                image_files.append("%s " %(_map["image"]))
+                                                image_files.append("%s " %(_map["image"])) #append the image name 
                                         counter = 1 +counter
         #_counter = _counter +1
 
@@ -72,7 +72,8 @@ def parser(inputfile,outfile,myList=[],*args):
  	
     #print(updates_images)
     #print(len(image_files))
-    print(f"You have {len(updates_images)} image files.")
+    print(f"You have {len(updates_images)} image files for {myList}")
+    print(f"The outfile is {outfile}")
 
     #To write out to file 
     with open(outfile,"w") as fout:
