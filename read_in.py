@@ -45,7 +45,6 @@ def reader(inputfile):
 
 			marray.append(array)
 
-		#print(marray)
 		marray = np.asarray(marray)
 		print(marray.shape)
 		return marray
