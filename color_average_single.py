@@ -7,7 +7,6 @@ import cv2, numpy as np
 from sklearn.cluster import KMeans
 from sklearn.cluster import MiniBatchKMeans 
 import matplotlib.colors as mc
-#from __future__ import print_function
 import webcolors
 from scipy.spatial import KDTree
 import os
@@ -52,39 +51,7 @@ def visualize_colors(cluster, centroids):
     rect = np.zeros((50, 300, 3), dtype=np.uint8)
     colors = sorted([(percent, color) for (percent, color) in zip(hist, centroids)]) #list from zipped values. Returns: [percent, [RGB VAL]]
 
-    #Moved this piece of code inside for loop. Need to extract this info for every picture without clutering return statement 
-    """
-    for i in range(len(colors[:])): #loop through all of the rows
-    	RGB_values.append(list(colors[i][1])) #append all the RGB values 
-    RGB_val = np.array(RGB_values,dtype=int)
-    a = [ rgb2hex(*RGB_val[i,:]) for i in range(RGB_val.shape[0]) ] #holds hex values for colors 
-    _color_names = []
-    for color_index in range(len(RGB_val[:])):
-        requested_colour = (RGB_val[color_index][0],RGB_val[color_index][1],RGB_val[color_index][2])
-        actual_name, closest_name = get_colour_name(requested_colour)
-        _color_names.append(closest_name)
-        #print(f"The color is {closest_name}")
-        #print("Actual colour name: %s closest colour name: %s" % (actual_name,closest_name))
-
-    start = 0
-    i = 0
-    #loop to get percentages
-    for (percent, color) in colors:
-        perc ="{:0.2f}%".format(percent * 100)
-        #print(f"RGB values are {color} with {perc} in the image for color {_color_names[i]}")
-        end = start + (percent * 300)
-        cv2.rectangle(rect, (int(start), 0), (int(end), 50), \
-                      color.astype("uint8").tolist(), -1)
-        start = end
-        i=i+1
-    """
     return rect,colors #returns the rectangle to visualize the color percentages and list containing our sorted colors [%, [RGB]
-
-
-# Load image and convert to a list of pixels
-
-#filedirectory = "/home/pi/ext_drive/red.txt"
-#rootdir = "/home/pi/Downloads/train/{}".format(sys.arv[1])
 
 
 
@@ -99,6 +66,7 @@ def color_average(rootdir):
         print("converted image")
         reshape = image.reshape((image.shape[0] * image.shape[1], 3))
         print("reshaped image")
+        #Helpful link 
         #https://scikit-learn.org/stable/modules/generated/sklearn.cluster.MiniBatchKMeans.html#sklearn.cluster.MiniBatchKMeans
         cluster = MiniBatchKMeans(init= 'k-means++',n_clusters=5,max_no_improvement= 15).fit(reshape)
         #cluster = KMeans(n_clusters=5).fit(reshape)
@@ -111,15 +79,13 @@ def color_average(rootdir):
 
         start=0
         i=0
+        #loop to print and save RGB values with perecentages 
         for (percent, color) in _col:
-            #perc ="{:0.2f}%".format(percent * 100)
             print("{} {:0.2f}%".format(color,percent*100))
             a = "{:0.2f}".format(percent * 100)
             _color = "{}".format(color)
             z = [_color,a]
-            #print(z)
             temp.append(z)
-            #print(temp)
             end = start + (percent * 300)
             cv2.rectangle(visualize, (int(start), 0), (int(end), 50), \
             color.astype("uint8").tolist(), -1)
@@ -127,13 +93,15 @@ def color_average(rootdir):
             i=i+1
 
         d = temp #merged list
-        #print(_file.split())
         print("Writing out to file now")
-        #for data in d:
-        #print(f"{d[0]} {d[1]} {d[2]} {d[3]} {d[4]} {d[5]}")
-        fout.write(f"{d[0]} {d[1]} {d[2]} {d[3]} {d[4]} \n")
+        #If our image is just one dominant color 
+        if(len(d) == 1):
+            fout.write(f"{d[0]}")
+        #else, write out as normal
+        else:
+            fout.write(f"{d[0]} {d[1]} {d[2]} {d[3]} {d[4]} \n")
+             #            RGB%1  RGB%2   RGB%3   RGB%4   RGB%5 
 
-  
         counter = counter+1
         print(f"You have gone through {counter} images.")
     print(f"The name of the file as it appears is {rootdir}_testing_colorinfo.txt ")

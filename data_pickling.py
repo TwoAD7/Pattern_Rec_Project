@@ -3,7 +3,6 @@ import pickle
 import sys 
 import os 
 
-#Pickling script
 filename = sys.argv[1]
 print(filename)
 names = os.path.split(filename)

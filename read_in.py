@@ -2,6 +2,7 @@ import numpy as np
 import os 
 #Function to read in data after it has been parsed and to format it the way we need it for the 
 #classifiers 
+#Reads in the {COLOR}_colorinfo.txt from the ext_drive on the RPI
 
 def reader(inputfile):
     with open(inputfile,"r") as fin:
@@ -20,30 +21,39 @@ def reader(inputfile):
                 except ValueError:
                     continue 
             #grab the percentages for each color for each image 
-            weights.append(array[3])
-            weights.append(array[7])
-            weights.append(array[11])
-            weights.append(array[15])
-            weights.append(array[19])
+            if(len(array) <=3):
+                weights.append(array[3])
+                junk = array.pop(3)
+                temp1 = [i * weights[0] for i in array[:3]]
+                array = temp1
+                marray.append(array)
+                continue
 
-            #pop the percentages out of the array 
-            junk = array.pop(3)
-            junk = array.pop(6)
-            junk = array.pop(9)
-            junk = array.pop(12)
-            junk = array.pop(15)
+            else:
+                weights.append(array[3])
+                weights.append(array[7])
+                weights.append(array[11])
+                weights.append(array[15])
+                weights.append(array[19])
+
+                #pop the percentages out of the array 
+                junk = array.pop(3)
+                junk = array.pop(6)
+                junk = array.pop(9)
+                junk = array.pop(12)
+                junk = array.pop(15)
             
-            #apply the percentages as the weights 
-            temp1 = [i * weights[0] for i in array[:3]]
-            temp2 = [i * weights[1] for i in array[3:6]]
-            temp3 = [i * weights[2] for i in array[6:9]]
-            temp4 = [i * weights[3] for i in array[9:12]]
-            temp5 = [i * weights[4] for i in array[12:15]]
+                #apply the percentages as the weights 
+                temp1 = [i * weights[0] for i in array[:3]]
+                temp2 = [i * weights[1] for i in array[3:6]]
+                temp3 = [i * weights[2] for i in array[6:9]]
+                temp4 = [i * weights[3] for i in array[9:12]]
+                temp5 = [i * weights[4] for i in array[12:15]]
             
-            array = temp1 +temp2+temp3+temp4+temp5
+                array = temp1 +temp2+temp3+temp4+temp5
             
-            #print(array)
-            marray.append(array)
+                #print(array)
+                marray.append(array)
     
         #print(marray)
         marray = np.asarray(marray)
