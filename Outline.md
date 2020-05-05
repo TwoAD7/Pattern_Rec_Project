@@ -2,7 +2,7 @@
 - Extract images to pi  [keaton,roy]
 ---
 
-### PHASE 2: Preprocessing the files <---- CURRENTLY ON
+### PHASE 2: Preprocessing the files
 - parse through the .json files [Roy]
   - look for questions that have the words "colors", "color" 
   - Separate those from our overall testing file. Call it "Color questions"
@@ -25,7 +25,7 @@
 - Test each method and error analysis [keaton]
 - Take a look at over all status [keaton,roy,christine]
 ---
-### PHASE 5: Testing
+### PHASE 5: Testing  <---- CURRENTLY ON
 - The test.json file does not have answers for its pictures. We will have to use the validation images. 
 - Do similar pre-processing to get images that deal with color.
 - Test the different methods with the new images from validation. 
