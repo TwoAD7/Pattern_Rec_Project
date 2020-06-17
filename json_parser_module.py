@@ -3,7 +3,7 @@ import sys
 
 #Written by: Roy Salinas
 #Purpose: Module to parse through the .json file
-
+#Arguments come from json_parser_interface.sh
 
 if __name__ == "__main__":
 	print("Runnning the parser in terminal!")
