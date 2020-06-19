@@ -1,8 +1,8 @@
 import numpy as np
 import os 
 #Function to read in data after it has been parsed and to format it the way we need it for the 
-#classifiers 
-#Reads in the {COLOR}_colorinfo.txt from the ext_drive on the RPI
+#classifiers (a multi-dimensional array)
+#Reads in the {COLOR}_colorinfo.txt from the ext_drive on the RPI to conver 
 
 def reader(inputfile):
     with open(inputfile,"r") as fin:
@@ -11,11 +11,11 @@ def reader(inputfile):
             array = []
             weights = []
             line = line.strip() #get rid of white space such as "\n"
-            line_info = line.split()
+            line_info = line.split() #split the line based on "words" or "character shapes"
             for element in line_info:
                 for character in element:
                     if( character == "]" or character == "'" or character == "[" or character == ","):
-                        element =element.replace(character,"")
+                        element =element.replace(character,"") #get rid of the "non-word character"
                 try:
                     array.append(float(element))
                 except ValueError:
