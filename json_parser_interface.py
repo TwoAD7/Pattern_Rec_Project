@@ -8,9 +8,9 @@ import sys
 #Colors are the colors we are looking for
 #sys.argv[0] is the name of this script, doesn't make sense to pass that in 
 #as that is THIS script
-inputfile = sys.argv[1] #passed in by shell script
-outfile = sys.argv[2]	#^
-colors  = sys.argv[3:] #grabbing all of the arguments in bash array in the third index of input
+inputfile = sys.argv[1] #passed in by shell script (file directory to use)
+outfile = sys.argv[2]	# outfile name
+colors  = sys.argv[3:] #grabbing all of the arguments in bash array in the third index of input (the colors)
 
 #For colors, insert the colors you are interested in finding in the .json file
 color_input = colors#.split()
